@@ -1,3 +1,4 @@
+
 <?php
 
 include_once('dbConnection.php');
@@ -27,50 +28,53 @@ include_once('dbConnection.php');
         echo "<h4>Welcome ".$_SESSION['userName']."</h4>";
       }
       else if (isset($_POST["addItem"])) {
-        echo "Adding item";
         $values['name'] = $_POST['name'];
         $values['price'] = $_POST['price'];
         $values['address'] = $_POST['address'];
 
-        $query = "INSERT INTO Product set name = :name, price = :price, warehouse_address = :warehouse_address;";
+        $query = "INSERT INTO `Product` (`id`, `name`, `price`, `warehouse_address`) VALUES (NULL, :name, :price, :address);";
         $Db->aquery($query, $values);
+
+        echo $_POST['name'];
+        echo $_POST['price'];
+        echo $_POST['address'];
       }
       else echo "Why is it here";
      ?>
     <form action="" method="post">
       <button type="submit" name="submit" class="btn btn-default">Logout</button>
     </form>
-
+<!--
     <h4>Add Item</h4>
       <form action="" method="post">
         <div class="form-group">
           <label for="name">Item name:</label>
-          <input type="text" class="form-control" id="name" name="name" required>
+<input type="text" class="form-control" id="name" name="name" require$
         </div>
         <div class="form-group">
           <label for="price">Price:</label>
-          <input type="text" class="form-control" id="price" name="price" required>
+          <input type="text" class="form-control" id="price" name="price" requi$
         </div>
         <div class="form-group">
           <label for="warehouseAddress">Warehouse Address:</label>
-          <input type="text" class="form-control" id="address" name="address" required>
+          <input type="text" class="form-control" id="address" name="address" r$
         </div>
-        <button type="submit" name="addItem" class="btn btn-default">AddItem</button>
+        <button type="submit" name="addItem" class="btn btn-default">AddItem</b$
       </form>
-
+-->
     <br/>
     <br/>
 
     <h4>
       <form action="" method="post">
-        <button type="submit" name="getItems" class="btn btn-default">Get Items</button>
+        <button type="submit" name="getItems" class="btn btn-default">Get Items$
       </form>
     </h4>
     <?php
       if (isset($_POST['getItems'])) {
         echo "Items";
         $query = "SELECT name, price, warehouse_address FROM Product;";
-        $result = $Db->rquery($query);
+$result = $Db->rquery($query);
         echo "<table border='2px'>";
         echo "<tr>";
         echo "<td>name</td>";
@@ -93,12 +97,12 @@ include_once('dbConnection.php');
 
   <h4>
     <form action="" method="post">
-      <button type="submit" name="getCustomers" class="btn btn-default">Get Customers</button>
+      <button type="submit" name="getCustomers" class="btn btn-default">Get Cus$
     </form>
   </h4>
   <?php
     if (isset($_POST['getCustomers'])) {
-      echo "Items";
+      echo "Customers";
       $query = "SELECT name, phone, email FROM Customer;";
       $result = $Db->rquery($query);
       echo "<table border='2px'>";
