@@ -22,7 +22,8 @@ include_once('dbConnection.php');
     <h3 class="text-center">Admin</h3>
     <?php
       if (isset($_POST["submit"])) {
-        unset($_SESSION['login']); die();
+        unset($_SESSION['login']);
+	header('LOCATION:admin.php'); die();
       }
       else if (isset($_SESSION['userName'])) {
         echo "<h4>Welcome ".$_SESSION['userName']."</h4>";

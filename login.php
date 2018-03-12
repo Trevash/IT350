@@ -29,6 +29,7 @@ include_once('dbConnection.php');
                     if($item["name"]) {
                       $_SESSION['login'] = true;
                       $_SESSION['userName'] = $item["name"];
+		      header('LOCATION:admin.php'); die();
                     }
                   }
         }
