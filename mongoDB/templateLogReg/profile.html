@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+<body>
+    <div class="headerInfo">
+        <h2><a href="/changePwd">Change Password</a>  |  <a href="/profile">Profile</a>  |  <a href="/logout">Logout</a></h2>
+    </div>
+    <div class="main">
+        <h2>Welcome to the profile page <%= user.username %> </h2>
+        <br />
+        <h2>Your email is: <%= user.email %> </h2>
+        <br />
+        <a type="button" href="/items">View Products</a>
+    </div>
+
+</body>
+</html>

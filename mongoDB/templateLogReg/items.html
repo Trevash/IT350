@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Products</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+</head>
+<body>
+    <div class="headerInfo">
+        <h2><a href="/profile">Profile</a>  |  <a href="/logout">Logout</a></h2>
+    </div>
+    <div class="main">
+        <h1>Welcome to the Product page</h1>
+        <table>
+            <th>Products</th>
+            <tr>
+                <td>Product</td>
+                <td>Price</td>
+                <td>Purchase</td>
+            </tr>
+                <% products.forEach(function (product) { %>
+                    <tr>
+                        <td> <%= product._doc.name %> </td>
+                        <td> <%= product._doc.price %> </td>
+                        <td><a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">PURCHASE</a></td>
+                    </tr>
+                <% }) %>
+        </table>
+        <div id="light" class="white_content">You purchased an item! <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"> Close</a> </div>
+        <div id="fade" class="black_overlay"></div>
+        <br />
+        <br />
+
+        <h2>Request Item</h2>
+        <form action="/items" method="post">
+            <p>name: <input type="text" name="product" placeholder="name" required=""></p>
+            <p>estimated price: <input type="text" name="price" placeholder="estimated price" required=""></p>
+            <button type="submit" name="your_name" value="your_value" class="btn-link">Request</button>
+        </form>
+    </div>
+</body>
+</html>

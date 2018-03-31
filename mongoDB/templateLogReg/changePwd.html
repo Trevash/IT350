@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Password</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+    <div class="headerInfo">
+        <h2><a href="/profile">Profile</a>  |  <a href="/logout">Logout</a></h2>
+    </div>
+    <div class="main">
+        <div class="signin-form profile">
+            <h3>Change password</h3>
+            <div class="login-form">
+                <form action="/chgpwd" method="post">
+                    <input type="password" name="currPassword" placeholder="Current Password" required="">
+                    <input type="password" name="newPassword" placeholder="New Password" required="">
+                    <div class="tp">
+                        <input type="submit" value="Change password">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
