@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import Flask, flash, redirect, render_template, request, session, abort
 import os
+
 from sqlalchemy.orm import sessionmaker
 from tabledef import *
 engine = create_engine('sqlite:///tutorial.db', echo=True)
@@ -11,8 +12,22 @@ app = Flask(__name__)
 def home():
     if not session.get('logged_in'):
         return render_template('login.html')
-    else:
-        return "Hello Boss! <br /><a href='/logout'>Logout</a><br /><a href='/'>Backup</a><br /><a href='/'>Status</a><br /><a href='/'>Usage</a>"
+    else:    
+        backup = request.args.get('backup')
+        status = request.args.get('status')
+        usage = request.args.get('usage')
+        if backup == '1':
+            print('Backing up')
+            flash('Backing up')
+            os.system('python backup.py database.db backups')
+            os.system('python backupMongo.py')
+            os.system('python backupMySQL.py')
+            return "Backups complete! <br /><a href='/logout'>Logout</a><br /><a href='/?backup=1'>Backup</a><br /><a href='/?status=1'>Status</a><br /><a href='/?usage=1'>Usage</a>"
+        if status == '1':
+            return "Status is great! <br /><a href='/logout'>Logout</a><br /><a href='/?backup=1'>Backup</a><br /><a href='/?status=1'>Status</a><br /><a href='/?usage=1'>Usage</a>"
+        if usage == '1':
+            return "Nobody uses this! :( <br /><a href='/logout'>Logout</a><br /><a href='/?backup=1'>Backup</a><br /><a href='/?status=1'>Status</a><br /><a href='/?usage=1'>Usage</a>"
+        return "Hello Boss! <br /><a href='/logout'>Logout</a><br /><a href='/?backup=1'>Backup</a><br /><a href='/?status=1'>Status</a><br /><a href='/?usage=1'>Usage</a>"
 
 @app.route('/login', methods=['POST'])
 def do_admin_login():
